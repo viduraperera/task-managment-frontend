@@ -1,8 +1,9 @@
-import { checkTokenExpiry, logoutUser } from "@/store/slices/userSlice";
+import { checkTokenExpiry } from "@/store/slices/userSlice";
 import { RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AllTaskDisplay from "./tasks/AllTaskDisplay";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -10,10 +11,7 @@ export default function Dashboard() {
 
   const userData = useSelector((state: RootState) => state.user);
 
-  const handleSignOut = () => {
-    dispatch(logoutUser());
-    router.push("/"); // Redirect to the home page
-  };
+  console.log("userData", userData);
 
   useEffect(() => {
     dispatch(checkTokenExpiry());
@@ -22,35 +20,83 @@ export default function Dashboard() {
     }
   }, [dispatch, userData.isAuthenticated, router]);
 
-  const cards = Array.from({ length: 7 }, (_, index) => (
-    <div
-      key={index}
-      className="card border-success mb-3"
-      style={{ maxWidth: "18rem" }}
-    >
-      <div className="card-header bg-transparent border-success">
-        Header {index + 1}
-      </div>
-      <div className="card-body text-success">
-        <h5 className="card-title">Primary card title {index + 1}</h5>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card&apos;s content.
-        </p>
-      </div>
-      <div className="card-footer bg-transparent border-success">
-        Footer {index + 1}
-      </div>
-    </div>
-  ));
-
   return (
     <div className="container">
       <div>
-        <button onClick={handleSignOut}>Sign Out</button>
-      </div>
-      <div className="card-grid">
-        {cards}
+        <ul
+          className="nav nav-tabs justify-content-center"
+          id="myTab"
+          role="tablist"
+        >
+          <li className="nav-item" role="presentation">
+            <button
+              className="nav-link active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="home-tab-pane"
+              aria-selected="true"
+            >
+              Pending
+            </button>
+          </li>
+          <li className="nav-item" role="presentation">
+            <button
+              className="nav-link"
+              id="profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#profile-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="profile-tab-pane"
+              aria-selected="false"
+            >
+              In Progress
+            </button>
+          </li>
+          <li className="nav-item" role="presentation">
+            <button
+              className="nav-link"
+              id="contact-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#contact-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="contact-tab-pane"
+              aria-selected="false"
+            >
+              Complete
+            </button>
+          </li>
+        </ul>
+        <div className="tab-content" id="myTabContent">
+          <div
+            className="tab-pane fade show active"
+            id="home-tab-pane"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+          >
+            <AllTaskDisplay status="pending" />
+          </div>
+          <div
+            className="tab-pane fade"
+            id="profile-tab-pane"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+            <AllTaskDisplay status="in-progress" />
+          </div>
+          <div
+            className="tab-pane fade"
+            id="contact-tab-pane"
+            role="tabpanel"
+            aria-labelledby="contact-tab"
+          >
+            <AllTaskDisplay status="complete" />
+          </div>
+        </div>
       </div>
     </div>
   );

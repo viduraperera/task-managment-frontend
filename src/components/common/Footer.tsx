@@ -12,8 +12,8 @@ export default function Footer() {
           className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
         >
           <Image
-            src=""
-            alt="Animal"
+            src="/assets/images/task.png"
+            alt="task"
             loading="lazy"
             width={40}
             height={40}
