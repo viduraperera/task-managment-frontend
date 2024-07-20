@@ -10,3 +10,14 @@ body {
 .custom-height {
     height: 74vh; /* Adjust this value as needed */
   }
+
+/* Assuming you're using a global stylesheet or CSS module */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  max-width: 100%; /* Ensure cards are responsive */
+}
