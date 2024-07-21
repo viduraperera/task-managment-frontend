@@ -1,0 +1,35 @@
+$success: #7952b3;
+
+@import "bootstrap/scss/bootstrap.scss";
+
+
+body {
+  padding: 1.5rem;
+}
+
+.custom-height {
+    height: 74vh; /* Adjust this value as needed */
+  }
+
+/* Assuming you're using a global stylesheet or CSS module */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  max-width: 100%; /* Ensure cards are responsive */
+}
+
+/* Define the default width for larger screens */
+.btn-custom {
+  width: 200px;
+}
+
+/* For smaller screens, make the button full width */
+@media (max-width: 768px) {
+  .btn-custom {
+    width: 100%;
+  }
+}
