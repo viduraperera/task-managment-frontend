@@ -67,4 +67,5 @@ export const {
     useGetSingleTasksQuery,
     useUpdateTaskMutation,
     useDeleteTaskMutation,
+    useLazyGetSingleTasksQuery,
 } = taskApiSlice;

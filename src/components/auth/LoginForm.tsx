@@ -27,7 +27,7 @@ const initialState: FormInputs = {
 const zodSchema = z.object({
   userName: z.string().nonempty("Please enter username"),
   password: z
-    .string({ required_error: "Please enter last name" })
+    .string({ required_error: "Please enter password" })
     .nonempty("Please enter password"),
 });
 
