@@ -118,7 +118,7 @@ export default function AllTaskDisplay({ status }: AllTaskDisplayProps) {
               style={{ maxWidth: "18rem" }}
             >
               <div className="card-header bg-transparent border-success  d-flex justify-content-between">
-                <span>{task.status}</span>
+                <span>{task.priority}</span>
                 {status !== "complete" && (
                   <button
                     className="btn btn-light btn-sm"
