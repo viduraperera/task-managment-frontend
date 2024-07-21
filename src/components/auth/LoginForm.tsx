@@ -86,7 +86,7 @@ export default function LoginForm({ values }: { values?: FormInputs }) {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center">
+    <div className="d-flex justify-content-center align-items-center" >
       <div className="col-md-7 col-lg-4">
         <h4 className="mb-3 text-center">Login</h4>
         <form onSubmit={handleSubmit(onSubmit)}>

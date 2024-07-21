@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import LoginForm from "./LoginForm";
@@ -6,7 +6,15 @@ import Image from "next/image";
 
 export default function Login() {
   return (
-    <div className="custom-height">
+    <div
+      className=" container custom-height"
+      style={{
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        overflow: "auto",
+        height: "height: 74vh",
+      }}
+    >
       <div className="py-5 text-center">
         <Image
           className="d-block mx-auto mb-4"
