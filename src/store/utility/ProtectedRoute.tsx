@@ -1,35 +1,36 @@
 "use client";
 
-import React, { ReactNode, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import { RootState } from '../store';
+import React, { ReactNode, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { useRouter } from "next/navigation";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const [isClient, setIsClient] = useState(false);
-  const isAuthenticated = useSelector((state: RootState) => state);
-  console.log('sat', isAuthenticated)
+  const [isMounted, setIsMounted] = useState(false);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.user.isAuthenticated
+  );
   const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true);
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    if (isClient && !isAuthenticated) {
-      router.push('/');
+    if (isMounted && !isAuthenticated) {
+      router.push("/");
     }
-  }, [isAuthenticated, router, isClient]);
+  }, [isAuthenticated, router, isMounted]);
 
-  if (!isClient || !isAuthenticated) {
+  if (!isAuthenticated || !isMounted) {
     return null;
   }
 
-  return <>{children}</>;
+  return <div>{children}</div>;
 };
 
 export default ProtectedRoute;

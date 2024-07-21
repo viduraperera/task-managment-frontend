@@ -16,8 +16,6 @@ export default function Dashboard() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [resetForm, setResetForm] = useState(false);
 
-  console.log("userData", userData);
-
   useEffect(() => {
     dispatch(checkTokenExpiry());
     if (userData.isAuthenticated === false) {
@@ -26,17 +24,27 @@ export default function Dashboard() {
   }, [dispatch, userData.isAuthenticated, router]);
 
   return (
-    <div className="container">
+    <div
+      className="container custom-height"
+      style={{
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        overflow: "auto",
+        height: "height: 74vh",
+      }}
+    >
       <div>
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            setIsDrawerOpen(true);
-            setResetForm(false);
-          }}
-        >
-          Create Task
-        </button>
+        <div style={{ paddingBottom: "20px" }}>
+          <button
+            className="btn btn-primary btn-custom" // Full width on small screens, inline-block on larger screens
+            onClick={() => {
+              setIsDrawerOpen(true);
+              setResetForm(false);
+            }}
+          >
+            Create Task
+          </button>
+        </div>
 
         <CreateTask
           open={isDrawerOpen}

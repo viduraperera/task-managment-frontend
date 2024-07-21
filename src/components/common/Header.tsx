@@ -13,6 +13,7 @@ export default function Header() {
   const userDataName = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   const router = useRouter();
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function Header() {
             />
           </Link>
         </div>
+        <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"></ul>
         <div className="col-md-3 text-end">
           {userDataName ? (
             <Button
