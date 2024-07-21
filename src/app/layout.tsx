@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Provider from "@/store/providor";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Head from "next/head";
 import Script from "next/script";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -46,6 +47,18 @@ export default function RootLayout({
         <body>
           <Header />
           <div>{children}</div>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
           <Footer />
         </body>
       </Provider>
