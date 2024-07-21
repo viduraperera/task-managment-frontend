@@ -1,24 +1,22 @@
 "use client";
 
+import { useRegisterUserMutation } from "@/store/auth/authApi.slice";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { getRandomValues } from "crypto";
 import React, { useState } from "react";
+import { Button, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { z } from "zod";
 import CustomInputField from "../common/customer-inputs/CustomInputField";
-import { Button, Spinner } from "react-bootstrap";
-import { useLoginMutation } from "@/store/auth/authApi.slice";
-import { useDispatch } from "react-redux";
-import { loginUser } from "@/store/slices/userSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-// Define the structure of form inputs
 type FormInputs = {
   userName: string;
   password: string;
 };
 
-// Initialize the form inputs
 const initialState: FormInputs = {
   userName: "",
   password: "",
@@ -44,8 +42,9 @@ const zodSchema = z.object({
     ),
 });
 
-export default function LoginForm({ values }: { values?: FormInputs }) {
-  const [login, { isLoading, isError, isSuccess }] = useLoginMutation();
+export default function RegisterForm({ values }: { values?: FormInputs }) {
+  const [registerUser, { isLoading, isError, isSuccess }] =
+    useRegisterUserMutation();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
@@ -65,33 +64,37 @@ export default function LoginForm({ values }: { values?: FormInputs }) {
   const onSubmit = async (data: FormInputs) => {
     setIsSubmitting(true);
     try {
-      const response = await login({
+      const response = await registerUser({
         username: data.userName,
         password: data.password,
       }).unwrap();
+      console.log("response", response);
+
       if (response) {
-        console.log(response);
-        const decodedToken = atob(response.token.split(".")[1]); // base64 decode the JWT payload
-        const user = JSON.parse(decodedToken).username; // Assuming the payload contains the username
-        const expireTime = JSON.parse(decodedToken).exp; // Assuming the payload contains the username
-        console.log("decodedToken", decodedToken);
-        console.log("user", user);
-        dispatch(loginUser({ user, token: response.token, exp: expireTime }));
-        toast.success("Login Successful");
-        router.push("/dashboard"); // Redirect to the dashboard
+        toast.success("User registered successfully");
+        router.push("/login"); // Redirect to the login page
       }
     } catch (error: any) {
-      console.error("Login error:", error.data.error);
-      toast.error(error.data.error);
+      if (
+        error.data &&
+        typeof error.data === "string" &&
+        error.data.startsWith("User registered")
+      ) {
+        toast.success("User registered successfully");
+        router.push("/login"); // Redirect to the login page
+      } else {
+        console.error("Register error:", error);
+        toast.error("Registration failed");
+      }
     } finally {
-      setIsSubmitting(false); // Ensure state is reset after completion
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center">
       <div className="col-md-7 col-lg-4">
-        <h4 className="mb-3 text-center">Login</h4>
+        <h4 className="mb-3 text-center">Register</h4>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row g-3">
             <CustomInputField
@@ -126,7 +129,7 @@ export default function LoginForm({ values }: { values?: FormInputs }) {
                   style={{ color: "black" }}
                 />
               ) : (
-                "Login"
+                "Register"
               )}
             </Button>
           </div>

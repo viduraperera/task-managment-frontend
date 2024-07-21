@@ -60,7 +60,7 @@ export default function Header() {
                   Login
                 </button>
               </Link>
-              <Link href="/signup">
+              <Link href="/register">
                 <Button type="button" className="btn btn-primary">
                   Sign-up
                 </Button>

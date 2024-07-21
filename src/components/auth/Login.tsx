@@ -2,14 +2,15 @@
 
 import React from "react";
 import LoginForm from "./LoginForm";
+import Image from "next/image";
 
 export default function Login() {
   return (
     <div className="custom-height">
       <div className="py-5 text-center">
-        <img
+        <Image
           className="d-block mx-auto mb-4"
-          src="/docs/5.3/assets/brand/bootstrap-logo.svg"
+          src="/assets/images/task.png"
           alt=""
           width="72"
           height="57"
