@@ -45,8 +45,11 @@ export default function RootLayout({
       />
       <Provider>
         <body>
-          <Header />
-          <div>{children}</div>
+          <div>
+            <Header />
+            <div>{children}</div>
+            <Footer />
+          </div>
           <ToastContainer
             position="top-right"
             autoClose={5000}
@@ -59,7 +62,6 @@ export default function RootLayout({
             pauseOnHover
             theme="colored"
           />
-          <Footer />
         </body>
       </Provider>
     </html>

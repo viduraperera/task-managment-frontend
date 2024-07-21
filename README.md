@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Task Manager
+
+This is a sample project that manage tasks. The project is built using Next.js with TypeScript, and styled using Bootstrap and SCSS.
+
+## Features
+
+- **Next.js**: Framework for server-rendered React applications.
+- **TypeScript**: Type-safe JavaScript with static type definitions.
+- **Bootstrap**: CSS framework for responsive design.
+- **SCSS**: Syntactically awesome stylesheets.
+- **Zod**: TypeScript-first schema declaration and validation.
+- **React Hook Form**: Performant, flexible, and extensible forms with easy-to-use validation.
+- **Jest**: Delightful JavaScript testing framework with a focus on simplicity.
 
 ## Getting Started
 
-First, run the development server:
+### Cloning the Repository
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. First, clone the repository:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/viduraperera/task-managment-frontend.git
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Navigate to the Folder
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   cd task-managment-frontend
+   ```
 
-## Learn More
+### Running Locally
 
-To learn more about Next.js, take a look at the following resources:
+1. Install the dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Start the development server:
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application will be available at `http://localhost:3000`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Running with Docker
+
+1. Build the Docker image:
+
+   ```bash
+   docker build -t task-managment-frontend .
+   ```
+
+2. Run the Docker container:
+
+   ```bash
+   docker run -p 3000:3000 task-managment-frontend
+   ```
+
+The application will be available at `http://localhost:3000`.
+
+## Scripts
+
+- **`npm install`**: Installs the project dependencies.
+- **`npm run dev`**: Starts the development server.
+- **`npm run build`**: Builds the application for production.
+- **`npm test`**: Runs the test suite.
+
+## License
+
+This project is licensed under the MIT License.

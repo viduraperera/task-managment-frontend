@@ -71,15 +71,12 @@ export default function TaskForm({
       reset(initialState);
     }
   }, [resetForm, reset]);
-  console.log("selectedTaskId", selectedTaskId);
 
   useEffect(() => {
     if (isEditing && selectedTaskId) {
       getSingleTasks({ id: selectedTaskId });
     }
   }, [getSingleTasks, isEditing, selectedTaskId]);
-
-  console.log("getSingleTasksDetails", getSingleTasksDetails);
 
   useEffect(() => {
     if (isEditing && getSingleTasksDetails) {

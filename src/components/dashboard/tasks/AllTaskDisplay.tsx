@@ -93,16 +93,27 @@ export default function AllTaskDisplay({ status }: AllTaskDisplayProps) {
     if (selectedTask) {
       try {
         await deleteTask(selectedTask).unwrap();
-        toast.success("task successfully deleted");
+        toast.success("Task successfully deleted");
       } catch (error) {
-        console.error("Failed to update task status", error);
-        toast.error("Failed to deleted task");
+        console.error("Failed to delete task", error);
+        toast.error("Failed to delete task");
       }
       setDeleteConfOpen(false);
     }
   };
 
-  console.log("selectedTask", selectedTask);
+  const getBorderColor = (priority: string) => {
+    switch (priority) {
+      case "low":
+        return "green";
+      case "medium":
+        return "#e6e600";
+      case "high":
+        return "red";
+      default:
+        return "gray"; // Default border color if priority is unknown
+    }
+  };
 
   return (
     <div className="card-grid" style={{ paddingTop: "20px" }}>
@@ -114,10 +125,20 @@ export default function AllTaskDisplay({ status }: AllTaskDisplayProps) {
           .map((task: Task, index: number) => (
             <div
               key={index}
-              className="card border-success mb-3"
-              style={{ maxWidth: "18rem" }}
+              className="card mb-3"
+              style={{
+                maxWidth: "18rem",
+                borderColor: getBorderColor(task.priority),
+                borderWidth: "2px",
+                borderStyle: "solid",
+              }}
             >
-              <div className="card-header bg-transparent border-success  d-flex justify-content-between">
+              <div
+                className="card-header bg-transparent d-flex justify-content-between"
+                style={{
+                  borderColor: getBorderColor(task.priority),
+                }}
+              >
                 <span>{task.priority}</span>
                 {status !== "complete" && (
                   <button
@@ -138,11 +159,21 @@ export default function AllTaskDisplay({ status }: AllTaskDisplayProps) {
                   </button>
                 )}
               </div>
-              <div className="card-body text-success">
+              <div
+                className="card-body"
+                style={{
+                  borderColor: getBorderColor(task.priority),
+                }}
+              >
                 <h5 className="card-title">{task.title}</h5>
                 <p className="card-text">{task.description}</p>
               </div>
-              <div className="card-footer bg-transparent border-success d-flex justify-content-between align-items-center">
+              <div
+                className="card-footer bg-transparent d-flex justify-content-between align-items-center"
+                style={{
+                  borderColor: getBorderColor(task.priority),
+                }}
+              >
                 <span>{task.status}</span>
                 <div>
                   <button
@@ -180,14 +211,14 @@ export default function AllTaskDisplay({ status }: AllTaskDisplayProps) {
         handleAction={handleUpdateStatus}
         handleClose={handleCloseChangeConConfOpen}
         title="Status Update"
-        body="Are you sure you want update the status"
+        body="Are you sure you want to update the status?"
       />
       <GenericModal
         show={deleteConfOpen}
         handleAction={handleDelete}
         handleClose={handleCloseDeleteConfOpen}
         title="Delete Task"
-        body="Are you sure you want delete the task"
+        body="Are you sure you want to delete the task?"
       />
       <UpdateTask
         open={isDrawerOpen}

@@ -70,21 +70,18 @@ export default function LoginForm({ values }: { values?: FormInputs }) {
         password: data.password,
       }).unwrap();
       if (response) {
-        console.log(response);
-        const decodedToken = atob(response.token.split(".")[1]); // base64 decode the JWT payload
-        const user = JSON.parse(decodedToken).username; // Assuming the payload contains the username
-        const expireTime = JSON.parse(decodedToken).exp; // Assuming the payload contains the username
-        console.log("decodedToken", decodedToken);
-        console.log("user", user);
+        const decodedToken = atob(response.token.split(".")[1]);
+        const user = JSON.parse(decodedToken).username;
+        const expireTime = JSON.parse(decodedToken).exp;
         dispatch(loginUser({ user, token: response.token, exp: expireTime }));
+        router.push("/dashboard");
         toast.success("Login Successful");
-        router.push("/dashboard"); // Redirect to the dashboard
       }
     } catch (error: any) {
       console.error("Login error:", error.data.error);
       toast.error(error.data.error);
     } finally {
-      setIsSubmitting(false); // Ensure state is reset after completion
+      setIsSubmitting(false);
     }
   };
 

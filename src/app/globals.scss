@@ -21,3 +21,15 @@ body {
 .card {
   max-width: 100%; /* Ensure cards are responsive */
 }
+
+/* Define the default width for larger screens */
+.btn-custom {
+  width: 200px;
+}
+
+/* For smaller screens, make the button full width */
+@media (max-width: 768px) {
+  .btn-custom {
+    width: 100%;
+  }
+}

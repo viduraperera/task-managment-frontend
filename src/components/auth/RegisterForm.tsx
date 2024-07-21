@@ -68,7 +68,6 @@ export default function RegisterForm({ values }: { values?: FormInputs }) {
         username: data.userName,
         password: data.password,
       }).unwrap();
-      console.log("response", response);
 
       if (response) {
         toast.success("User registered successfully");

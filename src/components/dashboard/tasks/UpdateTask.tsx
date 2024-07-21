@@ -13,7 +13,6 @@ export default function UpdateTask({
   handleClose: () => void;
   selectedTask?: string;
 }) {
-  console.log("selectedTask", selectedTask);
   return (
     <div>
       <GenericDrawer open={open} handleClose={handleClose}>
