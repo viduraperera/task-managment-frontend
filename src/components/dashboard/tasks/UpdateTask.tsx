@@ -15,7 +15,7 @@ export default function UpdateTask({
 }) {
   return (
     <div>
-      <GenericDrawer open={open} handleClose={handleClose}>
+      <GenericDrawer open={open} handleClose={handleClose} isEditing>
         <TaskForm
           resetForm={resetForm}
           handleClose={handleClose}

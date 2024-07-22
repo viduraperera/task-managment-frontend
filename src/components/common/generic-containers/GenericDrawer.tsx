@@ -4,10 +4,12 @@ export default function GenericDrawer({
   children,
   open,
   handleClose,
+  isEditing,
 }: {
   children: React.ReactNode;
   open: boolean;
   handleClose: () => void;
+  isEditing?: boolean;
 }) {
   return (
     <div
@@ -18,7 +20,7 @@ export default function GenericDrawer({
     >
       <div className="offcanvas-header">
         <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-          Backdrop with scrolling
+          {isEditing ? "Edit Task" : "Crete Task"}
         </h5>
         <button
           type="button"
