@@ -48,13 +48,18 @@ export default function Header() {
         <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"></ul>
         <div className="col-md-3 text-end">
           {userDataName ? (
-            <Button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleSignOut}
-            >
-              Sign Out
-            </Button>
+            <div  className="d-flex flex-wrap justify-content-between align-items-center" style={{ display: "flex" }}>
+              <div></div>
+              <div></div>
+              <h4>{userDataName}</h4>
+              <Button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </Button>
+            </div>
           ) : (
             <>
               <Link className="navbar-brand" href="/login">
