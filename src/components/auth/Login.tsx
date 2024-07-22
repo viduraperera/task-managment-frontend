@@ -7,27 +7,27 @@ import Image from "next/image";
 export default function Login() {
   return (
     <div
-      className=" container custom-height"
+      className="container custom-height"
       style={{
+        display: "flex",
         flexDirection: "column",
         flexWrap: "nowrap",
         overflow: "auto",
-        height: "height: 74vh",
+        height: "74vh",
       }}
     >
       <div className="py-5 text-center">
         <Image
           className="d-block mx-auto mb-4"
           src="/assets/images/task.png"
-          alt=""
+          alt="Task Manager Logo"
           width="72"
           height="57"
         />
-        <h2>Checkout form</h2>
+        <h2>Login to Task Manager</h2>
         <p className="lead">
-          Below is an example form built entirely with Bootstrap’s form
-          controls. Each required form group has a validation state that can be
-          triggered by attempting to submit the form without completing it.
+          Welcome back! Please log in to your Task Manager account to continue
+          managing your tasks efficiently.
         </p>
       </div>
       <LoginForm />
